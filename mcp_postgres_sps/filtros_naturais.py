@@ -1,0 +1,16 @@
+FILTROS_NATURAIS = {
+    "total faturado": "pedi_tota",
+    "total faturado por": "iped_tota",
+    "total vendido": "pedi_tota",
+    "total quantidade": "iped_quan",
+    "quantidade vendida": "iped_quan",
+    "total itens": "iped_quan",
+    "total pedidos": "pedi_nume",
+    "total clientes": "enti_tipo_enti",
+    "total vendedores": "pedi_vend",
+    "total produtos": "prod_nome",
+    "produto": "prod_nome",
+    "cliente": "enti_nome",
+    "vendedor": "pedi_vend",
+    "data": "pedi_data",
+}

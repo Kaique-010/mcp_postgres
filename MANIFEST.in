@@ -1,0 +1,5 @@
+include README.md
+include LICENSE
+recursive-include mcp_postgres_sps *.py
+recursive-include mcp_postgres_sps/templates *
+recursive-include mcp_postgres_sps/static *
