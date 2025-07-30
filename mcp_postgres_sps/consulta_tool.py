@@ -137,7 +137,7 @@ class ConsultaTool:
             empresa_field = self.detectar_campo_empresa()
 
             # Injetar filtro de empresa
-            sql = forcar_filtro_empresa(sql, empresa_id=1, campo_empresa=empresa_field)
+            sql = forcar_filtro_empresa(sql, valor='1', coluna=empresa_field)
 
             # Corrigir aliases no GROUP BY
             sql = corrigir_group_by_aliases(sql)

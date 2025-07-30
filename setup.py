@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='mcp_postgres',
-    version='1.0.0',
+    version='1.0.2',
     author='Leonardo Sousa',
     author_email='leokaique7@gmail.com',
     description='Uma Ferramenta de Consulta de Bases de Dados PostgreSQL usando Linguagem Natural',

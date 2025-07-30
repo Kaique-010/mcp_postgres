@@ -45,3 +45,15 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# Ignorar pastas lixo ou temporárias
+0/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.env
+.venv/
+dist/
+build/
+*.egg-info/
