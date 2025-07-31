@@ -1,6 +1,12 @@
 from django.db import models, transaction
 from django.db.models import Max
+from django.core.exceptions import ValidationError
 import logging
+from .validators import (
+    validate_cpf, validate_cnpj, validate_cep, validate_phone_number,
+    validate_email_format, validate_empresa_id, cpf_validator,
+    cnpj_validator, cep_validator, phone_validator
+)
 
 logger = logging.getLogger(__name__)
 
@@ -14,22 +20,103 @@ class Entidades(models.Model):
         ('FU', 'FUNCIONÁRIOS'),
     ]
 
-    enti_empr = models.IntegerField()
-    enti_clie = models.BigIntegerField(unique=True, primary_key=True)
-    enti_nome = models.CharField(max_length=100, default='')
-    enti_tipo_enti = models.CharField(max_length=100, choices=TIPO_ENTIDADES, default='FO')
-    enti_fant = models.CharField(max_length=100, default='', blank=True, null=True)  
-    enti_cpf = models.CharField(max_length=11, blank=True, null=True)  
-    enti_cnpj = models.CharField(max_length=14, blank=True, null=True)  
-    enti_insc_esta = models.CharField(max_length=11, blank=True, null=True)    
-    enti_cep = models.CharField(max_length=8) 
-    enti_ende = models.CharField(max_length=60)
-    enti_nume = models.CharField(max_length=4)  
-    enti_cida = models.CharField(max_length=60)
-    enti_esta = models.CharField(max_length=2)
-    enti_fone = models.CharField(max_length=14, blank=True, null=True)  
-    enti_celu = models.CharField(max_length=15, blank=True, null=True)  
-    enti_emai = models.CharField(max_length=60, blank=True, null=True)  
+    enti_empr = models.IntegerField(
+        validators=[validate_empresa_id],
+        verbose_name="Empresa",
+        help_text="ID da empresa"
+    )
+    enti_clie = models.BigIntegerField(
+        unique=True, 
+        primary_key=True,
+        verbose_name="Código Cliente"
+    )
+    enti_nome = models.CharField(
+        max_length=100, 
+        default='',
+        verbose_name="Nome",
+        help_text="Nome completo da entidade"
+    )
+    enti_tipo_enti = models.CharField(
+        max_length=100, 
+        choices=TIPO_ENTIDADES, 
+        default='FO',
+        verbose_name="Tipo de Entidade"
+    )
+    enti_fant = models.CharField(
+        max_length=100, 
+        default='', 
+        blank=True, 
+        null=True,
+        verbose_name="Nome Fantasia"
+    )
+    enti_cpf = models.CharField(
+        max_length=11, 
+        blank=True, 
+        null=True,
+        validators=[validate_cpf],
+        verbose_name="CPF",
+        help_text="CPF sem pontuação"
+    )
+    enti_cnpj = models.CharField(
+        max_length=14, 
+        blank=True, 
+        null=True,
+        validators=[validate_cnpj],
+        verbose_name="CNPJ",
+        help_text="CNPJ sem pontuação"
+    )
+    enti_insc_esta = models.CharField(
+        max_length=11, 
+        blank=True, 
+        null=True,
+        verbose_name="Inscrição Estadual"
+    )
+    enti_cep = models.CharField(
+        max_length=8,
+        validators=[validate_cep],
+        verbose_name="CEP",
+        help_text="CEP sem pontuação"
+    )
+    enti_ende = models.CharField(
+        max_length=60,
+        verbose_name="Endereço"
+    )
+    enti_nume = models.CharField(
+        max_length=4,
+        verbose_name="Número"
+    )
+    enti_cida = models.CharField(
+        max_length=60,
+        verbose_name="Cidade"
+    )
+    enti_esta = models.CharField(
+        max_length=2,
+        verbose_name="Estado",
+        help_text="Sigla do estado (ex: SP, RJ)"
+    )
+    enti_fone = models.CharField(
+        max_length=14, 
+        blank=True, 
+        null=True,
+        validators=[validate_phone_number],
+        verbose_name="Telefone",
+        help_text="Telefone sem pontuação"
+    )
+    enti_celu = models.CharField(
+        max_length=15, 
+        blank=True, 
+        null=True,
+        validators=[validate_phone_number],
+        verbose_name="Celular",
+        help_text="Celular sem pontuação"
+    )
+    enti_emai = models.CharField(
+        max_length=60, 
+        blank=True, 
+        null=True,
+        validators=[validate_email_format],
+        verbose_name="Email"
+    )  
 
     def __str__(self):
         return self.enti_nome
@@ -49,23 +136,60 @@ TIPO_FINANCEIRO = [
 ]
 
 class PedidosVenda(models.Model):
-    pedi_empr = models.IntegerField()
-    pedi_fili = models.IntegerField()
-    pedi_nume = models.IntegerField(primary_key=True)
-    pedi_forn = models.CharField(db_column='pedi_forn',max_length=60)
-    pedi_data = models.DateField()
-    pedi_tota = models.DecimalField(decimal_places=2, max_digits=15)
-    pedi_canc = models.BooleanField(default=False)
-    pedi_fina = models.CharField(max_length=100, choices=TIPO_FINANCEIRO, default='0')
-    pedi_vend = models.CharField( db_column='pedi_vend', max_length=15, default=0)  
-    pedi_stat = models.CharField(max_length=50, choices=[
-        (0, 'Pendente'),
-        (1, 'Processando'),
-        (2, 'Enviado'),
-        (3, 'Concluído'),
-        (4, 'Cancelado'),
-    ], default=0)
-    pedi_obse = models.TextField(blank=True, null=True)
+    pedi_empr = models.IntegerField(verbose_name="Empresa")
+    pedi_fili = models.IntegerField(verbose_name="Filial")
+    pedi_nume = models.IntegerField(primary_key=True, verbose_name="Número do Pedido")
+    
+    # Relacionamento com cliente (fornecedor no contexto de venda)
+    pedi_forn = models.ForeignKey(
+        'Entidades', 
+        on_delete=models.PROTECT,
+        db_column='pedi_forn',
+        related_name='pedidos_como_cliente',
+        verbose_name="Cliente",
+        limit_choices_to={'enti_tipo_enti__in': ['CL', 'AM']}
+    )
+    
+    pedi_data = models.DateField(verbose_name="Data do Pedido")
+    pedi_tota = models.DecimalField(
+        decimal_places=2, 
+        max_digits=15, 
+        verbose_name="Total do Pedido",
+        help_text="Valor total do pedido em reais"
+    )
+    pedi_canc = models.BooleanField(default=False, verbose_name="Cancelado")
+    pedi_fina = models.CharField(
+        max_length=100, 
+        choices=TIPO_FINANCEIRO, 
+        default='0',
+        verbose_name="Tipo Financeiro"
+    )
+    
+    # Relacionamento com vendedor
+    pedi_vend = models.ForeignKey(
+        'Entidades',
+        on_delete=models.PROTECT,
+        db_column='pedi_vend',
+        related_name='pedidos_como_vendedor',
+        verbose_name="Vendedor",
+        limit_choices_to={'enti_tipo_enti': 'VE'},
+        null=True,
+        blank=True
+    )
+    
+    pedi_stat = models.CharField(
+        max_length=50, 
+        choices=[
+            ('0', 'Pendente'),
+            ('1', 'Processando'),
+            ('2', 'Enviado'),
+            ('3', 'Concluído'),
+            ('4', 'Cancelado'),
+        ], 
+        default='0',
+        verbose_name="Status"
+    )
+    pedi_obse = models.TextField(blank=True, null=True, verbose_name="Observações")
 
     class Meta:
         db_table = 'pedidosvenda'
@@ -78,26 +202,127 @@ class PedidosVenda(models.Model):
     
     
 class Itenspedidovenda(models.Model):
-    iped_empr = models.IntegerField(unique=True)  
-    iped_fili = models.IntegerField(unique=True)
-    iped_pedi = models.CharField(db_column='iped_pedi', max_length=50, unique=True, primary_key=True)
-    iped_item = models.IntegerField()
-    iped_prod = models.CharField(max_length=60, db_column='iped_prod') 
-    iped_quan = models.DecimalField(max_digits=15, decimal_places=5, blank=True, null=True)
-    iped_unit = models.DecimalField(max_digits=15, decimal_places=5, blank=True, null=True)
-    iped_suto = models.DecimalField(max_digits=15, decimal_places=5, blank=True, null=True)
-    iped_tota = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
-    iped_fret = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
-    iped_desc = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
-    iped_unli = models.DecimalField(max_digits=15, decimal_places=5, blank=True, null=True)
-    iped_forn = models.IntegerField(blank=True, null=True)
-    iped_vend = models.IntegerField(blank=True, null=True)
-    iped_cust = models.DecimalField(max_digits=15, decimal_places=4, blank=True, null=True)
-    iped_tipo = models.IntegerField(blank=True, null=True)
-    iped_desc_item = models.BooleanField(blank=True, null=True)
-    iped_perc_desc = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
-    iped_unme = models.CharField(max_length=6, blank=True, null=True)
-    iped_data = models.DateField(auto_now=True)
+    iped_empr = models.IntegerField(verbose_name="Empresa")
+    iped_fili = models.IntegerField(verbose_name="Filial")
+    
+    # Relacionamento com pedido
+    iped_pedi = models.ForeignKey(
+        'PedidosVenda',
+        on_delete=models.CASCADE,
+        db_column='iped_pedi',
+        related_name='itens',
+        verbose_name="Pedido"
+    )
+    
+    iped_item = models.IntegerField(verbose_name="Item")
+    
+    # Relacionamento com produto
+    iped_prod = models.ForeignKey(
+        'Produtos',
+        on_delete=models.PROTECT,
+        db_column='iped_prod',
+        related_name='itens_vendidos',
+        verbose_name="Produto"
+    )
+    
+    iped_quan = models.DecimalField(
+        max_digits=15, 
+        decimal_places=5, 
+        blank=True, 
+        null=True,
+        verbose_name="Quantidade",
+        help_text="Quantidade vendida do produto"
+    )
+    iped_unit = models.DecimalField(
+        max_digits=15, 
+        decimal_places=5, 
+        blank=True, 
+        null=True,
+        verbose_name="Preço Unitário"
+    )
+    iped_suto = models.DecimalField(
+        max_digits=15, 
+        decimal_places=5, 
+        blank=True, 
+        null=True,
+        verbose_name="Subtotal"
+    )
+    iped_tota = models.DecimalField(
+        max_digits=15, 
+        decimal_places=2, 
+        blank=True, 
+        null=True,
+        verbose_name="Total do Item"
+    )
+    iped_fret = models.DecimalField(
+        max_digits=15, 
+        decimal_places=2, 
+        blank=True, 
+        null=True,
+        verbose_name="Frete"
+    )
+    iped_desc = models.DecimalField(
+        max_digits=15, 
+        decimal_places=2, 
+        blank=True, 
+        null=True,
+        verbose_name="Desconto"
+    )
+    iped_unli = models.DecimalField(
+        max_digits=15, 
+        decimal_places=5, 
+        blank=True, 
+        null=True,
+        verbose_name="Unidade Líquida"
+    )
+    
+    # Relacionamentos com fornecedor e vendedor
+    iped_forn = models.ForeignKey(
+        'Entidades',
+        on_delete=models.SET_NULL,
+        related_name='itens_fornecidos',
+        blank=True,
+        null=True,
+        verbose_name="Fornecedor",
+        limit_choices_to={'enti_tipo_enti__in': ['FO', 'AM']}
+    )
+    iped_vend = models.ForeignKey(
+        'Entidades',
+        on_delete=models.SET_NULL,
+        related_name='itens_vendidos_por',
+        blank=True,
+        null=True,
+        verbose_name="Vendedor",
+        limit_choices_to={'enti_tipo_enti': 'VE'}
+    )
+    
+    iped_cust = models.DecimalField(
+        max_digits=15, 
+        decimal_places=4, 
+        blank=True, 
+        null=True,
+        verbose_name="Custo"
+    )
+    iped_tipo = models.IntegerField(blank=True, null=True, verbose_name="Tipo")
+    iped_desc_item = models.BooleanField(
+        blank=True, 
+        null=True,
+        verbose_name="Desconto no Item"
+    )
+    iped_perc_desc = models.DecimalField(
+        max_digits=5, 
+        decimal_places=2, 
+        blank=True, 
+        null=True,
+        verbose_name="Percentual de Desconto"
+    )
+    iped_unme = models.CharField(
+        max_length=6, 
+        blank=True, 
+        null=True,
+        verbose_name="Unidade de Medida"
+    )
+    iped_data = models.DateField(auto_now=True, verbose_name="Data")
 
 
     class Meta:
