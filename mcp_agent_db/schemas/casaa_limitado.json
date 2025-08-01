@@ -1,0 +1,825 @@
+{
+  "abastecusto": {
+    "colunas": [
+      {
+        "nome": "abas_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "abas_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "abas_ctrl",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "abas_frot",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_func",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "abas_enti",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "abas_bomb",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_comb",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_quan",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "abas_unit",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "abas_tota",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "abas_hokm",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_obse",
+        "tipo": "text",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_quan_ante",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "abas_hokm_ante",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "abas_medi",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "abas_docu",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "_log_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "_log_time",
+        "tipo": "time without time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_prat",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_lote_valo",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_ctrl_valo",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_usua_nome",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_usua_alte",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "abas_oste",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela abastecusto"
+  },
+  "aceitenfe": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "hora",
+        "tipo": "time without time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela aceitenfe"
+  },
+  "acertomoto": {
+    "colunas": [
+      {
+        "nome": "acer_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_moto",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_nume",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_dati",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_datf",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_banc_laba",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_ctrl_laba",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_valo",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_venc",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_comi",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_adia",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_cred",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_debi",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_reto",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_sald",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "acer_titu",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      },
+      {
+        "nome": "_log_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "_log_time",
+        "tipo": "time without time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela acertomoto"
+  },
+  "acertomotoristanovo": {
+    "colunas": [
+      {
+        "nome": "acer_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_acer",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_veic",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_plac",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_moto",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_clie",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_data_part",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_data_reto",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_dife_dias",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_medi_km_dia",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_km_inic",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_km_fin",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_km_perc",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_comb_cons",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_prec_medi_comb",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_medi_litr_km",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_perc_comi_fret",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_fret",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_valo_comi_fret",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_perc_comi_esta",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_esta",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_valo_comi_esta",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_comi",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_cheq",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_dinh",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota_desp",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_fret_rece",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_fret_a_rece",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tota",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_debi_moto",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_devo_moto",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_troc_empr",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_gera_fret",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_gera_desp",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_sald",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_obse_gera",
+        "tipo": "text",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_carr",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_plac_carr",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tran",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela acertomotoristanovo"
+  },
+  "acertopesonota": {
+    "colunas": [
+      {
+        "nome": "acer_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_nota",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "acer_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_peso",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_tabe_fret",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_orig",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_ende_orig",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_proj",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_proj_cecu",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_peso_2",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_peso_3",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_data_paga",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_data_rece",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_mad_forn",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_data_paga_forn",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_valo_comp",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_area",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_data_dese",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_usua",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_nome_usua",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_moto",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "acer_plac",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela acertopesonota"
+  }
+}
