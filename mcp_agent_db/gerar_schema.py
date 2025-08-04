@@ -160,30 +160,88 @@ def salvar_schema(slug, schema):
         json.dump(schema, f, indent=2, ensure_ascii=False)
     print(f"✅ Schema salvo em {caminho}")
 
-def gerar_schema(slug: str):
-    """Gera schema para um cliente específico"""
-    print(f"🔍 Gerando schema para: {slug}")
-    
-    config = DATABASES.get(slug)
-    if not config:
-        raise ValueError(f"Slug '{slug}' não encontrado em DATABASES")
-    
-    print(f"📊 Conectando ao banco {config.get('tipo', 'postgres')}...")
-    conn = conectar_db(config)
+# Dicionário de campos chave por contexto
+CAMPOS_CHAVE = {
+    "clientes": {
+        "tabelas": ["entidades"],
+        "campos_identificacao": ["enti_clie", "enti_nome", "enti_fant"],
+        "campos_contato": ["enti_fone", "enti_celu", "enti_emai"],
+        "campos_endereco": ["enti_ende", "enti_cida", "enti_esta", "enti_cep"],
+        "campos_documento": ["enti_cnpj", "enti_cpf"]
+    },
+    "vendedores": {
+        "tabelas": ["funcionarios", "entidades"],
+        "campos_identificacao": ["func_codi", "func_nome", "enti_titpo_enti"],
+        "campos_situacao": ["func_situ", "func_entr", "func_said"]
+    },
+    "produtos": {
+        "tabelas": ["produtos"],
+        "campos_identificacao": ["prod_codi", "prod_nome"],
+        "campos_preco": ["prod_prec", "prod_cust"],
+        "campos_estoque": ["sapr_sald"]
+    },
+    "pedidos": {
+        "tabelas": ["pedidosvenda"],
+        "campos_identificacao": ["pedi_nume", "pedi_data"],
+        "campos_cliente": ["pedi_forn"],
+        "campos_vendedor": ["pedi_vend"],
+        "campos_valor": ["pedi_tota"]
+    }
+}
+
+def adicionar_metadados_schema(schema_dict):
+    """Adiciona metadados sobre campos chave ao schema"""
+    schema_dict["_metadados"] = {
+        "campos_chave": CAMPOS_CHAVE,
+        "descricao": "Metadados para facilitar consultas do agente",
+        "exemplos_consultas": {
+            "clientes": [
+                "Para buscar clientes: SELECT enti_nome FROM entidades WHERE enti_tipo_enti = 'CL'",
+                "Campos principais: enti_clie (código), enti_nome (nome), enti_fant (fantasia)"
+            ],
+            "vendedores": [
+                "Para buscar vendedores: SELECT func_nome FROM funcionarios WHERE func_situ = true",
+                "Ou usar: SELECT enti_nome FROM entidades WHERE enti_tipo_enti = 'VE'",
+
+            ],
+            "produtos": [
+                "Para buscar produtos: SELECT prod_nome FROM produtos",
+                "Para estoque: SELECT sapr_sald FROM saldosprodutos"
+            ],
+            "pedidos": [
+                "Para buscar pedidos: SELECT pedi_nume, pedi_data FROM pedidosvenda",
+                "Relacionar com cliente: JOIN entidades ON pedi_forn = enti_clie"
+            ]
+        }
+    }
+    return schema_dict
+
+def gerar_schema(slug):
+    """Gera o schema para um banco específico"""
+    print(f"🔄 Gerando schema para: {slug}")
     
     try:
-        schema = extrair_schema(conn, config.get('tipo', 'postgres'))
-        salvar_schema(slug, schema)
+        # Conectar ao banco
+        conn = conectar_db(slug)
+        if not conn:
+            return False
         
-        # Mostrar resumo
-        total_tabelas = len(schema)
-        total_colunas = sum(len(tabela['colunas']) for tabela in schema.values())
-        print(f"✅ Schema extraído: {total_tabelas} tabelas, {total_colunas} colunas")
+        # Extrair schema
+        schema = extrair_schema(conn, slug)
         
-        return schema
+        # Adicionar metadados
+        schema = adicionar_metadados_schema(schema)
         
-    finally:
+        # Salvar schema
+        salvar_schema(schema, slug)
+        
         conn.close()
+        print(f"✅ Schema gerado com sucesso: {slug}")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Erro ao gerar schema: {e}")
+        return False
 
 def criar_banco_exemplo_sqlite():
     """Cria um banco SQLite de exemplo para testar"""
@@ -250,7 +308,9 @@ def testar_sistema_completo():
     criar_banco_exemplo_sqlite()
     
     # Gerar schema
-    schema = gerar_schema("cliente_sqlite")
+    # Execute este código para gerar o schema atual
+    if __name__ == "__main__":
+        schema = gerar_schema("casaa")
     
     # Mostrar resultado
     print("\n📋 SCHEMA GERADO:")

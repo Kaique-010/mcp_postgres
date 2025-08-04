@@ -6,6 +6,9 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 import json
 from agente_inteligente_v2 import processar_pergunta_com_agente_v2, processar_pergunta_com_streaming_sync, gerar_sql
+from conversation_memory import conversation_memory
+from cache_manager import query_cache
+
 
 
 
@@ -172,6 +175,34 @@ async def consultar_com_streaming(request: PerguntaRequest):
             }, 
             status_code=500
         )
+
+@app.get("/api/historico")
+async def get_historico():
+    """Retorna histórico da conversa"""
+    return {
+        "historico": conversation_memory.history,
+        "contexto": conversation_memory.context,
+        "sugestoes": conversation_memory.get_suggestions()
+    }
+
+@app.post("/api/limpar-cache")
+async def limpar_cache():
+    """Limpa cache de consultas"""
+    query_cache.cache.clear()
+    return {"message": "Cache limpo com sucesso"}
+
+@app.post("/api/limpar-historico")
+async def limpar_historico():
+    """Limpa histórico da conversa"""
+    conversation_memory.history.clear()
+    conversation_memory.context = {
+        'empresa_atual': None,
+        'filial_atual': None,
+        'periodo_atual': None,
+        'ultimo_resultado': None,
+        'topico_atual': None
+    }
+    return {"message": "Histórico limpo com sucesso"}
 
 if __name__ == "__main__":
     import uvicorn
