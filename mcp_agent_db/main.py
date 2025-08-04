@@ -5,22 +5,39 @@ from pydantic import BaseModel
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 import json
-from agente_inteligente_v2 import processar_pergunta_com_agente_v2, processar_pergunta_com_streaming_sync, gerar_sql
+import uvicorn
+import os
+from agente_inteligente_v2 import processar_pergunta_com_agente_v2, processar_pergunta_com_streaming_sync
+from sql_generator import gerar_sql_da_pergunta
 from conversation_memory import conversation_memory
 from cache_manager import query_cache
 
+# Configuração da aplicação
+app = FastAPI(
+    title="MCP Agent DB",
+    description="API para consulta de bases de dados usando linguagem natural",
+    version="1.0.3",
+    docs_url="/docs",
+    redoc_url="/redoc"
+)
 
-
-
-app = FastAPI()
-app.mount("/static", StaticFiles(directory="."), name="static")
+# Montar arquivos estáticos
+try:
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+except:
+    # Fallback se a pasta static não existir
+    pass
 
 executor = ThreadPoolExecutor(max_workers=4)
 
-
 class PerguntaRequest(BaseModel):
     pergunta: str
-    slug: str = "auto"
+    slug: str = "casaa"
+
+class GraficoRequest(BaseModel):
+    pergunta: str
+    tipo_grafico: str = "bar"
+    slug: str = "casaa"
 
 def executar_agente_sync(pergunta):
     return processar_pergunta_com_agente_v2(pergunta)
@@ -30,20 +47,56 @@ def executar_agente_streaming_sync(pergunta):
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root():
-    with open("templates/index.html", "r", encoding="utf-8") as file:
-        return HTMLResponse(content=file.read())
+    """Página inicial da aplicação"""
+    try:
+        with open("templates/index.html", "r", encoding="utf-8") as file:
+            return HTMLResponse(content=file.read())
+    except FileNotFoundError:
+        return HTMLResponse(content="""
+        <html>
+            <head><title>MCP Agent DB</title></head>
+            <body>
+                <h1>🤖 MCP Agent DB API</h1>
+                <p>API para consulta de bases de dados usando linguagem natural</p>
+                <ul>
+                    <li><a href="/docs">📚 Documentação da API</a></li>
+                    <li><a href="/redoc">📖 ReDoc</a></li>
+                </ul>
+            </body>
+        </html>
+        """)
 
-
-# Rota específica para servir a logo
 @app.get("/logo.png")
 async def get_logo():
+    """Servir logo da aplicação"""
     from fastapi.responses import FileResponse
-    return FileResponse("logo.png")
+    try:
+        return FileResponse("logo.png")
+    except:
+        return JSONResponse({"error": "Logo não encontrada"}, status_code=404)
 
+@app.get("/api/health")
+async def health_check():
+    """Verificação de saúde da API"""
+    return {
+        "status": "healthy",
+        "version": "1.0.3",
+        "service": "MCP Agent DB"
+    }
+
+@app.get("/api/schemas")
+async def listar_schemas():
+    """Listar schemas disponíveis"""
+    # Aqui você pode implementar a lógica para listar schemas
+    return {
+        "schemas": ["casaa"],
+        "default": "casaa"
+    }
 
 @app.post("/api/consulta")
 async def consultar(request: PerguntaRequest):
-    print(f"Recebido: {request.pergunta}")
+    """Realizar consulta em linguagem natural"""
+    print(f"🔍 Recebido: {request.pergunta}")
     
     try:
         # Executar o agente em thread separada
@@ -54,21 +107,66 @@ async def consultar(request: PerguntaRequest):
             request.pergunta
         )
         
-        print(f"Resposta do agente: {resposta}")
+        print(f"✅ Resposta do agente: {resposta[:100]}...")
         
-        return JSONResponse(content={"resposta": resposta})
+        return JSONResponse(content={
+            "pergunta": request.pergunta,
+            "resposta": resposta,
+            "slug": request.slug,
+            "status": "success"
+        })
         
     except Exception as e:
-        print(f"Erro: {str(e)}")
+        print(f"❌ Erro: {str(e)}")
         return JSONResponse(
-            content={"resposta": f"Erro ao processar consulta: {str(e)}"}, 
+            content={
+                "pergunta": request.pergunta,
+                "resposta": f"Erro ao processar consulta: {str(e)}",
+                "slug": request.slug,
+                "status": "error"
+            }, 
+            status_code=500
+        )
+
+@app.post("/api/grafico")
+async def gerar_grafico(request: GraficoRequest):
+    """Gerar gráfico a partir de consulta"""
+    print(f"📊 Gerando gráfico: {request.pergunta}")
+    
+    try:
+        # Adicionar instrução de gráfico à pergunta
+        pergunta_com_grafico = f"Gere um gráfico {request.tipo_grafico} para: {request.pergunta}"
+        
+        # Executar o agente em thread separada
+        loop = asyncio.get_event_loop()
+        resposta = await loop.run_in_executor(
+            executor, 
+            executar_agente_sync, 
+            pergunta_com_grafico
+        )
+        
+        return JSONResponse(content={
+            "pergunta": request.pergunta,
+            "tipo_grafico": request.tipo_grafico,
+            "resposta": resposta,
+            "slug": request.slug,
+            "status": "success"
+        })
+        
+    except Exception as e:
+        print(f"❌ Erro ao gerar gráfico: {str(e)}")
+        return JSONResponse(
+            content={
+                "pergunta": request.pergunta,
+                "resposta": f"Erro ao gerar gráfico: {str(e)}",
+                "slug": request.slug,
+                "status": "error"
+            }, 
             status_code=500
         )
 
 async def stream_agente_response(pergunta: str):
-    """
-    Gerador que simula o streaming real da resposta do agente
-    """
+    """Gerador que simula o streaming real da resposta do agente"""
     try:
         # Enviar evento de início
         yield f"data: {json.dumps({'tipo': 'inicio', 'mensagem': f'🤖 Analisando: {pergunta}'})}\n\n"
@@ -121,9 +219,7 @@ async def stream_agente_response(pergunta: str):
 
 @app.post("/api/consulta-streaming")
 async def consultar_com_streaming_real(request: PerguntaRequest):
-    """
-    Streaming real usando Server-Sent Events
-    """
+    """Streaming real usando Server-Sent Events"""
     print(f"🎬 Iniciando streaming real: {request.pergunta}")
     
     return StreamingResponse(
@@ -136,45 +232,6 @@ async def consultar_com_streaming_real(request: PerguntaRequest):
             "Access-Control-Allow-Headers": "*",
         }
     )
-
-@app.post("/api/consulta-streaming-old")
-async def consultar_com_streaming(request: PerguntaRequest):
-    """
-    Versão antiga do streaming (mantida para compatibilidade)
-    """
-    print(f"🎬 Iniciando consulta com streaming: {request.pergunta}")
-    
-    try:
-        # Executar o agente com streaming em thread separada
-        loop = asyncio.get_event_loop()
-        resultado = await loop.run_in_executor(
-            executor, 
-            executar_agente_streaming_sync, 
-            request.pergunta
-        )
-        
-        print(f"✅ Streaming concluído: {resultado['status']}")
-        
-        return JSONResponse(content={
-            "pergunta": resultado["pergunta"],
-            "resposta": resultado["resposta"],
-            "status": resultado["status"],
-            "etapas_executadas": resultado["etapas_executadas"],
-            "tipo": "streaming"
-        })
-        
-    except Exception as e:
-        print(f"❌ Erro no streaming: {str(e)}")
-        return JSONResponse(
-            content={
-                "pergunta": request.pergunta,
-                "resposta": f"Erro ao processar consulta com streaming: {str(e)}",
-                "status": "erro",
-                "etapas_executadas": 0,
-                "tipo": "streaming"
-            }, 
-            status_code=500
-        )
 
 @app.get("/api/historico")
 async def get_historico():
@@ -204,6 +261,19 @@ async def limpar_historico():
     }
     return {"message": "Histórico limpo com sucesso"}
 
+def main():
+    """Função principal para executar a aplicação"""
+    print("🚀 Iniciando MCP Agent DB...")
+    print("📚 Documentação disponível em: http://localhost:8000/docs")
+    print("🌐 Interface web em: http://localhost:8000")
+    
+    uvicorn.run(
+        app, 
+        host="0.0.0.0", 
+        port=int(os.getenv("PORT", 8000)),
+        reload=False,
+        log_level="info"
+    )
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    main()

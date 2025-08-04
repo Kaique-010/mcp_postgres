@@ -1,5 +1,9 @@
 include README.md
+include requirements.txt
 include LICENSE
-recursive-include mcp_postgres_sps *.py
-recursive-include mcp_postgres_sps/templates *
-recursive-include mcp_postgres_sps/static *
+recursive-include mcp_agent_db/templates *.html
+recursive-include mcp_agent_db/static *.png *.css *.js
+recursive-include mcp_agent_db/schemas *.json
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store

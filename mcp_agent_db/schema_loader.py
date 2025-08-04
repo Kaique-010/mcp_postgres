@@ -56,23 +56,66 @@ def listar_schemas_disponiveis() -> list:
 
 def formatar_schema_para_prompt(schema: Dict) -> str:
     """
-    Formata schema para uso em prompts do LLM
-    
-    Args:
-        schema: Schema carregado do JSON
-        
-    Returns:
-        String formatada para prompt
+    Formata schema para uso em prompts do LLM incluindo metadados
     """
     if not schema:
         return "Nenhum schema disponível"
     
     linhas = []
-    linhas.append("TABELAS DISPONÍVEIS:")
+    linhas.append("=== SCHEMA DO BANCO DE DADOS ===\n")
+    
+    # Adicionar metadados se existirem
+    metadados = schema.get('_metadados', {})
+    if metadados:
+        campos_chave = metadados.get('campos_chave', {})
+        exemplos = metadados.get('exemplos_consultas', {})
+        
+        linhas.append("🔑 CAMPOS CHAVE POR CONTEXTO:")
+        for contexto, info in campos_chave.items():
+            linhas.append(f"\n📋 {contexto.upper()}:")
+            linhas.append(f"   Tabelas: {', '.join(info['tabelas'])}")
+            for tipo_campo, campos in info.items():
+                if tipo_campo != 'tabelas':
+                    linhas.append(f"   {tipo_campo}: {', '.join(campos)}")
+        
+        linhas.append("\n💡 EXEMPLOS DE CONSULTAS:")
+        for contexto, exemplo_list in exemplos.items():
+            linhas.append(f"\n📝 {contexto.upper()}:")
+            for exemplo in exemplo_list:
+                linhas.append(f"   - {exemplo}")
+        
+        linhas.append("\n" + "="*50)
+    
+    linhas.append("\n📊 TABELAS DISPONÍVEIS:")
     
     for tabela, info in schema.items():
+        if tabela.startswith('_'):  # Pular metadados
+            continue
+            
         colunas = info.get('colunas', [])
-        colunas_str = ", ".join([col['nome'] for col in colunas])
-        linhas.append(f"- {tabela}: {colunas_str}")
+        linhas.append(f"\n🔹 {tabela}:")
+        
+        # Separar colunas por tipo
+        pks = [col for col in colunas if col.get('primary_key')]
+        importantes = [col for col in colunas if any(palavra in col['nome'].lower() 
+                      for palavra in ['nome', 'desc', 'data', 'valor', 'prec', 'quan'])]
+        outras = [col for col in colunas if col not in pks and col not in importantes]
+        
+        if pks:
+            linhas.append("   🔑 Chaves primárias:")
+            for col in pks:
+                linhas.append(f"      - {col['nome']} ({col['tipo']})")
+        
+        if importantes:
+            linhas.append("   ⭐ Campos importantes:")
+            for col in importantes:
+                linhas.append(f"      - {col['nome']} ({col['tipo']})")
+        
+        if len(outras) <= 10:  # Mostrar todas se poucas
+            linhas.append("   📝 Outros campos:")
+            for col in outras:
+                linhas.append(f"      - {col['nome']} ({col['tipo']})")
+        else:  # Resumir se muitas
+            linhas.append(f"   📝 Outros campos ({len(outras)}): {', '.join([col['nome'] for col in outras[:5]])}...")
     
     return "\n".join(linhas)

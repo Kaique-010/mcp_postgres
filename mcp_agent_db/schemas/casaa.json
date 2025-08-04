@@ -2171,6 +2171,13 @@
         "nullable": true,
         "default": null,
         "primary_key": false
+      },
+      {
+        "nome": "libe_nao_libe",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
       }
     ],
     "descricao": "Tabela aliberar"
@@ -4827,6 +4834,116 @@
     ],
     "descricao": "Tabela atividadesprojeto"
   },
+  "auditoria_logacao": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('auditoria_logacao_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "usuario_id",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_hora",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      },
+      {
+        "nome": "tipo_acao",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "url",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ip",
+        "tipo": "inet",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "navegador",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "dados",
+        "tipo": "jsonb",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "dados_antes",
+        "tipo": "jsonb",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "dados_depois",
+        "tipo": "jsonb",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "campos_alterados",
+        "tipo": "jsonb",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "objeto_id",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "modelo",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "empresa",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "licenca",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela auditoria_logacao"
+  },
   "ausencia": {
     "colunas": [
       {
@@ -4894,6 +5011,84 @@
       }
     ],
     "descricao": "Tabela ausencia"
+  },
+  "auth_group": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('auth_group_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "name",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela auth_group"
+  },
+  "auth_group_permissions": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('auth_group_permissions_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "group_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "permission_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela auth_group_permissions"
+  },
+  "auth_permission": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('auth_permission_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "name",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "content_type_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "codename",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela auth_permission"
   },
   "avisos": {
     "colunas": [
@@ -13476,6 +13671,116 @@
     ],
     "descricao": "Tabela comissaoaplicdosa"
   },
+  "comissoes_sps": {
+    "colunas": [
+      {
+        "nome": "comi_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('comissoes_sps_comi_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "comi_empr",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_fili",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_func",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_cate",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_valo_tota",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_impo",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_valo_liqu",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_perc",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_comi_tota",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_parc",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_comi_parc",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_form_paga",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_data_entr",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comi_clie",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela comissoes_sps"
+  },
   "complitemestofado": {
     "colunas": [
       {
@@ -13808,6 +14113,198 @@
       }
     ],
     "descricao": "Tabela condmaterial"
+  },
+  "conf_estoque_mobile": {
+    "colunas": [
+      {
+        "nome": "conf_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('conf_estoque_mobile_conf_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "conf_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "conf_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "conf_pedi_move_esto",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_orca_move_esto",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_os_move_esto",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_prod_move_esto",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_esto_nega",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_esto_mini",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_esto_maxi",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_custo_medio",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_custo_ulti",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_data_alte",
+        "tipo": "timestamp without time zone",
+        "nullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_usua_alte",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela conf_estoque_mobile"
+  },
+  "conf_financeiro_mobile": {
+    "colunas": [
+      {
+        "nome": "conf_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('conf_financeiro_mobile_conf_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "conf_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "conf_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "conf_perm_desc_pedi",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_desc_maxi_pedi",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_perm_acre_pedi",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_calc_comi_auto",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_comi_sobr_desc",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_praz_maxi_vend",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_perm_vend_praz",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_data_alte",
+        "tipo": "timestamp without time zone",
+        "nullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      },
+      {
+        "nome": "conf_usua_alte",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela conf_financeiro_mobile"
   },
   "confautobare": {
     "colunas": [
@@ -17382,6 +17879,20 @@
       {
         "nome": "cont_emis_bole",
         "tipo": "boolean",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "cont_quan_adic",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "cont_valo_adic",
+        "tipo": "numeric",
         "nullable": true,
         "default": null,
         "primary_key": false
@@ -21384,6 +21895,74 @@
     ],
     "descricao": "Tabela desbloqueio"
   },
+  "descontoautorizadocaixa": {
+    "colunas": [
+      {
+        "nome": "desc_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "desc_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "desc_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "desc_vend",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "desc_usua",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "desc_perc",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "desc_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "desc_time",
+        "tipo": "time without time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "desc_usua_auto",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela descontoautorizadocaixa"
+  },
   "descontocheque": {
     "colunas": [
       {
@@ -22929,6 +23508,152 @@
       }
     ],
     "descricao": "Tabela di"
+  },
+  "django_admin_log": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('django_admin_log_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "action_time",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "object_id",
+        "tipo": "text",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "object_repr",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "action_flag",
+        "tipo": "smallint",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "change_message",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "content_type_id",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "user_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela django_admin_log"
+  },
+  "django_content_type": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('django_content_type_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "app_label",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "model",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela django_content_type"
+  },
+  "django_migrations": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('django_migrations_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "app",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "name",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "applied",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela django_migrations"
+  },
+  "django_session": {
+    "colunas": [
+      {
+        "nome": "session_key",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "session_data",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "expire_date",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela django_session"
   },
   "dlpa": {
     "colunas": [
@@ -26087,57 +26812,8 @@
         "primary_key": true
       },
       {
-        "nome": "enti_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
         "nome": "enti_clie",
         "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_clie",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_clie",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_clie",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_clie",
-        "tipo": "bigint",
         "nullable": false,
         "default": null,
         "primary_key": true
@@ -26147,34 +26823,6 @@
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "enti_clie",
-        "tipo": "bigint",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_clie",
-        "tipo": "bigint",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_clie",
-        "tipo": "bigint",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "enti_nome",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -26182,13 +26830,6 @@
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "enti_tipo_enti",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -26196,13 +26837,6 @@
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "enti_fant",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -26220,31 +26854,10 @@
         "primary_key": false
       },
       {
-        "nome": "enti_cpf",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "enti_sufr",
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "enti_cnpj",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "enti_insc_esta",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -26264,20 +26877,6 @@
       {
         "nome": "enti_cep",
         "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "enti_ende",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "enti_cep",
-        "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
         "primary_key": false
@@ -26292,22 +26891,8 @@
       {
         "nome": "enti_nume",
         "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "enti_nume",
-        "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "enti_cida",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -26318,31 +26903,10 @@
         "primary_key": false
       },
       {
-        "nome": "enti_esta",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "enti_fone",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "enti_bair",
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "enti_celu",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -26357,13 +26921,6 @@
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "enti_emai",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -27846,6 +28403,34 @@
       {
         "nome": "enti_hoop_id",
         "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "enti_ramo",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "enti_banc_lanc_caix",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "enti_parc_min",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "enti_parc_max",
+        "tipo": "integer",
         "nullable": true,
         "default": null,
         "primary_key": false
@@ -30363,39 +30948,11 @@
   "familiaprodutos": {
     "colunas": [
       {
-        "nome": "grup_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('familiaprodutos_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
         "nome": "fami_codi",
         "tipo": "character varying",
         "nullable": false,
         "default": "NULL::character varying",
         "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('familiaprodutos_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "fami_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_desc",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
       },
       {
         "nome": "fami_desc",
@@ -35610,66 +36167,10 @@
     "colunas": [
       {
         "nome": "grup_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('gruposprodutos_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('gruposprodutos_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
         "tipo": "character varying",
         "nullable": false,
         "default": "NULL::character varying",
         "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('gruposprodutos_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('gruposprodutos_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_desc",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
       },
       {
         "nome": "grup_desc",
@@ -36462,95 +36963,6 @@
       }
     ],
     "descricao": "Tabela imagenos"
-  },
-  "implantacoes": {
-    "colunas": [
-      {
-        "nome": "id",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('implantacoes_id_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "Empresa",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "1",
-        "primary_key": false
-      },
-      {
-        "nome": "Filial",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "1",
-        "primary_key": false
-      },
-      {
-        "nome": "cliente",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "modulos",
-        "tipo": "ARRAY",
-        "nullable": false,
-        "default": "'{}'::text[]",
-        "primary_key": false
-      },
-      {
-        "nome": "telas",
-        "tipo": "ARRAY",
-        "nullable": false,
-        "default": "'{}'::text[]",
-        "primary_key": false
-      },
-      {
-        "nome": "implantador",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "data_implantacao",
-        "tipo": "date",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "status",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "'nao_iniciado'::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "treinado",
-        "tipo": "boolean",
-        "nullable": false,
-        "default": "false",
-        "primary_key": false
-      },
-      {
-        "nome": "observacoes",
-        "tipo": "text",
-        "nullable": false,
-        "default": "''::text",
-        "primary_key": false
-      },
-      {
-        "nome": "criado_em",
-        "tipo": "date",
-        "nullable": false,
-        "default": "now()",
-        "primary_key": false
-      }
-    ],
-    "descricao": "Tabela implantacoes"
   },
   "imposto": {
     "colunas": [
@@ -43017,9 +43429,91 @@
         "nullable": true,
         "default": null,
         "primary_key": false
+      },
+      {
+        "nome": "item_quan",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
       }
     ],
     "descricao": "Tabela itenslistacasamento"
+  },
+  "itenslistacasamentocomprado": {
+    "colunas": [
+      {
+        "nome": "comp_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comp_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "comp_list",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "comp_prod",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "comp_clie",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "comp_pedi",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "comp_quan",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_time",
+        "tipo": "time without time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_usua",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela itenslistacasamentocomprado"
   },
   "itensmapacarregamento": {
     "colunas": [
@@ -45008,104 +45502,6 @@
         "primary_key": true
       },
       {
-        "nome": "iped_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
         "nome": "iped_fili",
         "tipo": "integer",
         "nullable": false,
@@ -45114,62 +45510,6 @@
       },
       {
         "nome": "iped_pedi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_pedi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_pedi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_pedi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_pedi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_pedi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_pedi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_pedi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_item",
         "tipo": "integer",
         "nullable": false,
         "default": null,
@@ -45181,55 +45521,6 @@
         "nullable": false,
         "default": null,
         "primary_key": true
-      },
-      {
-        "nome": "iped_item",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_item",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_item",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_item",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_item",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_item",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "iped_prod",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
       },
       {
         "nome": "iped_prod",
@@ -45246,20 +45537,6 @@
         "primary_key": false
       },
       {
-        "nome": "iped_quan",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "iped_unit",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "iped_unit",
         "tipo": "numeric",
         "nullable": true,
@@ -45271,20 +45548,6 @@
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "iped_suto",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "iped_tota",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -45292,13 +45555,6 @@
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "iped_fret",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -45316,24 +45572,10 @@
         "primary_key": false
       },
       {
-        "nome": "iped_desc",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "iped_fret",
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "iped_unli",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -45344,31 +45586,10 @@
         "primary_key": false
       },
       {
-        "nome": "iped_forn",
-        "tipo": "integer",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "iped_outr",
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "iped_vend",
-        "tipo": "integer",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "iped_cust",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -45379,13 +45600,6 @@
         "primary_key": false
       },
       {
-        "nome": "iped_tipo",
-        "tipo": "integer",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "iped_unli",
         "tipo": "numeric",
         "nullable": true,
@@ -45393,24 +45607,10 @@
         "primary_key": false
       },
       {
-        "nome": "iped_desc_item",
-        "tipo": "boolean",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "iped_aliq_icms",
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "iped_perc_desc",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -45425,20 +45625,6 @@
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "iped_unme",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "iped_data",
-        "tipo": "date",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -45978,6 +46164,13 @@
         "tipo": "integer",
         "nullable": true,
         "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "iped_list",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
         "primary_key": false
       }
     ],
@@ -50234,6 +50427,13 @@
         "nullable": true,
         "default": null,
         "primary_key": false
+      },
+      {
+        "nome": "libe_reme",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
       }
     ],
     "descricao": "Tabela liberar"
@@ -50393,6 +50593,13 @@
       {
         "nome": "log_time",
         "tipo": "time without time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "list_nome",
+        "tipo": "character varying",
         "nullable": true,
         "default": null,
         "primary_key": false
@@ -50759,6 +50966,142 @@
     ],
     "descricao": "Tabela log"
   },
+  "log_parametro_mobile": {
+    "colunas": [
+      {
+        "nome": "log_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('log_parametro_mobile_log_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "log_tabe",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_regi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_acao",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_valo_ante",
+        "tipo": "text",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_valo_novo",
+        "tipo": "text",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_usua",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_data",
+        "tipo": "timestamp without time zone",
+        "nullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      },
+      {
+        "nome": "log_ip",
+        "tipo": "inet",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela log_parametro_mobile"
+  },
+  "log_parametro_sistema": {
+    "colunas": [
+      {
+        "nome": "log_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('log_parametro_sistema_log_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "log_tabe",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_regi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_acao",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_valo_ante",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_valo_novo",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_usua",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_data",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "log_ip",
+        "tipo": "inet",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela log_parametro_sistema"
+  },
   "logaltetele": {
     "colunas": [
       {
@@ -51116,65 +51459,9 @@
         "primary_key": true
       },
       {
-        "nome": "marc_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('marca_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "marc_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('marca_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "marc_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('marca_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "marc_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('marca_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "marc_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "marc_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "marc_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
         "nome": "marc_nome",
         "tipo": "character varying",
         "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "marc_desc",
-        "tipo": "character varying",
-        "nullable": false,
         "default": null,
         "primary_key": false
       },
@@ -51243,6 +51530,1210 @@
       }
     ],
     "descricao": "Tabela marca"
+  },
+  "marketplace_carrinho_compras": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_carrinho_compras_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "session_key",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "empresa_slug",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ativo",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_carrinho_compras"
+  },
+  "marketplace_configuracoes_mercadopago": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_configuracoes_mercadopago_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "empresa_slug",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mp_public_key",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mp_access_token",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mp_client_id",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mp_client_secret",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "modo_teste",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ativo",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_cartao_credito",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_cartao_debito",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_pix",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_boleto",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_transferencia",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "parcelamento_maximo",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "juros_parcelamento",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "auto_return",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "success_url",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "failure_url",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "pending_url",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_configuracoes_mercadopago"
+  },
+  "marketplace_configuracoes_stripe": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_configuracoes_stripe_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "empresa_slug",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "stripe_public_key",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "stripe_secret_key",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "stripe_webhook_secret",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "modo_teste",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ativo",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_cartao_credito",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_cartao_debito",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_pix",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_boleto",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "aceitar_transferencia",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "parcelamento_maximo",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "juros_parcelamento",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_configuracoes_stripe"
+  },
+  "marketplace_contas_ml": {
+    "colunas": [
+      {
+        "nome": "ml_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_contas_ml_ml_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "ml_empr",
+        "tipo": "bigint",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ml_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ml_access_token",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ml_refresh_token",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ml_expires_in",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ml_created_at",
+        "tipo": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ml_updated_at",
+        "tipo": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_contas_ml"
+  },
+  "marketplace_itens_carrinho": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_itens_carrinho_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "produto_codigo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "quantidade",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "preco_unitario",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_adicao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "carrinho_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_itens_carrinho"
+  },
+  "marketplace_itens_pedido": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_itens_pedido_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "produto_codigo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "produto_nome",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "quantidade",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "preco_unitario",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "subtotal",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "pedido_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_itens_pedido"
+  },
+  "marketplace_pagamentos_mercadopago": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_pagamentos_mercadopago_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "mp_payment_id",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mp_preference_id",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mp_merchant_order_id",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mp_external_reference",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "valor",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "moeda",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "tipo_pagamento",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "status",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "nome_cobranca",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "email_cobranca",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "telefone_cobranca",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "endereco_cobranca",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "descricao",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "metadata",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_pagamento",
+        "tipo": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "pedido_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_pagamentos_mercadopago"
+  },
+  "marketplace_pagamentos_stripe": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_pagamentos_stripe_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "stripe_payment_intent_id",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "stripe_customer_id",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "stripe_payment_method_id",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "valor",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "moeda",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "tipo_pagamento",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "status",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "nome_cobranca",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "email_cobranca",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "telefone_cobranca",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "endereco_cobranca",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "descricao",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "metadata",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_pagamento",
+        "tipo": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "pedido_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_pagamentos_stripe"
+  },
+  "marketplace_pedidos": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_pedidos_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "empresa_slug",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "session_key",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "numero_pedido_sistema",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "cliente_nome",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "cliente_email",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "cliente_telefone",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "cliente_endereco",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "valor_total",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "status",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "observacoes",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_pedidos"
+  },
+  "marketplace_produto_imagens": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_produto_imagens_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "produto_codigo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "url_imagem",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "descricao",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ordem",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ativo",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "imagem_local",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "titulo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_produto_imagens"
+  },
+  "marketplace_produtos": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_produtos_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "produto_codigo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "titulo_customizado",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "descricao_melhorada",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "categoria_marketplace",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "tags",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "destaque",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ativo_marketplace",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ordem_exibicao",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_produtos"
+  },
+  "marketplace_publicacoes": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_publicacoes_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "mark_empr",
+        "tipo": "bigint",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mark_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mark_mark",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mark_item_id",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mark_publ_em",
+        "tipo": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mark_stat",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mark_err_msg",
+        "tipo": "text",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mark_prod_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_publicacoes"
+  },
+  "marketplace_reembolsos_mercadopago": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_reembolsos_mercadopago_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "mp_refund_id",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "valor",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "motivo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "status",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_reembolso",
+        "tipo": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "pagamento_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_reembolsos_mercadopago"
+  },
+  "marketplace_reembolsos_stripe": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('marketplace_reembolsos_stripe_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "stripe_refund_id",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "valor",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "motivo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "status",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_atualizacao",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_reembolso",
+        "tipo": "timestamp with time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "pagamento_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela marketplace_reembolsos_stripe"
   },
   "mdfe": {
     "colunas": [
@@ -52465,6 +53956,53 @@
       }
     ],
     "descricao": "Tabela modelo"
+  },
+  "modulosmobile": {
+    "colunas": [
+      {
+        "nome": "modu_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('modulosmobile_modu_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "modu_nome",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "modu_desc",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "modu_ativ",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "modu_icon",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "modu_orde",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela modulosmobile"
   },
   "moldes": {
     "colunas": [
@@ -59483,6 +61021,60 @@
     ],
     "descricao": "Tabela notavendaservico"
   },
+  "notificacoes": {
+    "colunas": [
+      {
+        "nome": "id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('notificacoes_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "usuario_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "titulo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "mensagem",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "tipo",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "data_criacao",
+        "tipo": "timestamp with time zone",
+        "nullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      },
+      {
+        "nome": "lida",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela notificacoes"
+  },
   "observacoesoscomercial": {
     "colunas": [
       {
@@ -61666,6 +63258,20 @@
       {
         "nome": "orca_codi_maga",
         "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orca_codi_hoop",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orca_taxa_cart",
+        "tipo": "numeric",
         "nullable": true,
         "default": null,
         "primary_key": false
@@ -64689,6 +66295,83 @@
         "nullable": true,
         "default": null,
         "primary_key": false
+      },
+      {
+        "nome": "orde_resi_t1t2",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_impe_t1t2",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_indu_t1t2",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_angu_t1t2",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_corr_t1t2",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_bala_t1t2",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_fatu_diss",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_capa_mca",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_resi_isol",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_tvs",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "orde_freq_test",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
       }
     ],
     "descricao": "Tabela ordemservico"
@@ -65459,13 +67142,95 @@
     ],
     "descricao": "Tabela ordemservicoimgdepois"
   },
+  "ordemservicoimgdurante": {
+    "colunas": [
+      {
+        "nome": "imdu_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('ordemservicoimgdurante_imdu_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "imdu_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "imdu_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "imdu_orde",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "imdu_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "imdu_come",
+        "tipo": "text",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "imdu_imag",
+        "tipo": "bytea",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "imdu_obse",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "img_latitude",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "img_longitude",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "img_data",
+        "tipo": "timestamp without time zone",
+        "nullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela ordemservicoimgdurante"
+  },
   "ordemservicopecas": {
     "colunas": [
       {
         "nome": "peca_id",
         "tipo": "integer",
         "nullable": false,
-        "default": "nextval('ordemservicopecas_peca_id_seq'::regclass)",
+        "default": null,
         "primary_key": true
       },
       {
@@ -66732,15 +68497,29 @@
         "primary_key": false
       },
       {
-        "nome": "os_seto",
+        "nome": "os_vend",
         "tipo": "integer",
         "nullable": true,
         "default": null,
         "primary_key": false
       },
       {
+        "nome": "os_mult_empr",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      },
+      {
         "nome": "os_tota",
         "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "os_seto",
+        "tipo": "integer",
         "nullable": true,
         "default": null,
         "primary_key": false
@@ -71975,6 +73754,20 @@
         "nullable": true,
         "default": "false",
         "primary_key": false
+      },
+      {
+        "nome": "para_taxa_cart_piso",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "false",
+        "primary_key": false
+      },
+      {
+        "nome": "para_orca_mult_item",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
       }
     ],
     "descricao": "Tabela parametros"
@@ -72086,6 +73879,81 @@
       }
     ],
     "descricao": "Tabela parametrosgerais"
+  },
+  "parametrosmobile": {
+    "colunas": [
+      {
+        "nome": "para_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('parametrosmobile_para_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "para_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "para_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "para_nome",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "para_desc",
+        "tipo": "text",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "para_valo",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "para_ativ",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "para_data_alte",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "para_usua_alte",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "para_modu_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela parametrosmobile"
   },
   "parcelasnfe": {
     "colunas": [
@@ -73154,6 +75022,34 @@
         "tipo": "boolean",
         "nullable": true,
         "default": "false",
+        "primary_key": false
+      },
+      {
+        "nome": "peca_cust_atac",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "peca_empr_ofic",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "peca_fili_ofic",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "peca_dado_nota",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
         "primary_key": false
       }
     ],
@@ -75181,6 +77077,13 @@
         "nullable": true,
         "default": null,
         "primary_key": false
+      },
+      {
+        "nome": "pedi_usua",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
       }
     ],
     "descricao": "Tabela pedidoscompra"
@@ -75625,6 +77528,13 @@
         "nullable": true,
         "default": "false",
         "primary_key": false
+      },
+      {
+        "nome": "pedi_taxa_cart",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
       }
     ],
     "descricao": "Tabela pedidospisos"
@@ -75679,48 +77589,6 @@
         "primary_key": true
       },
       {
-        "nome": "pedi_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
         "nome": "pedi_fili",
         "tipo": "integer",
         "nullable": false,
@@ -75733,62 +77601,6 @@
         "nullable": false,
         "default": null,
         "primary_key": true
-      },
-      {
-        "nome": "pedi_nume",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_nume",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_nume",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_nume",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_nume",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_nume",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_nume",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "pedi_forn",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
       },
       {
         "nome": "pedi_forn",
@@ -75801,13 +77613,6 @@
         "nome": "pedi_data",
         "tipo": "date",
         "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "pedi_data",
-        "tipo": "date",
-        "nullable": false,
         "default": null,
         "primary_key": false
       },
@@ -75819,31 +77624,10 @@
         "primary_key": false
       },
       {
-        "nome": "pedi_tota",
-        "tipo": "numeric",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "pedi_canc",
-        "tipo": "boolean",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "pedi_valo_ipi",
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "pedi_fina",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -75854,13 +77638,6 @@
         "primary_key": false
       },
       {
-        "nome": "pedi_vend",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "pedi_segu",
         "tipo": "numeric",
         "nullable": true,
@@ -75868,24 +77645,10 @@
         "primary_key": false
       },
       {
-        "nome": "pedi_stat",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "pedi_outr",
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "pedi_obse",
-        "tipo": "text",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -77832,6 +79595,203 @@
     ],
     "descricao": "Tabela pedivendindustria"
   },
+  "perm_modulo_mobile": {
+    "colunas": [
+      {
+        "nome": "perm_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('perm_modulo_mobile_perm_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "perm_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_modu",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_ativ",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "perm_data_libe",
+        "tipo": "timestamp without time zone",
+        "nullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      },
+      {
+        "nome": "perm_data_venc",
+        "tipo": "timestamp without time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_usua_libe",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_obse",
+        "tipo": "text",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela perm_modulo_mobile"
+  },
+  "perm_rota_mobile": {
+    "colunas": [
+      {
+        "nome": "rota_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('perm_rota_mobile_rota_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "rota_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "rota_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "rota_modu",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "rota_nome",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "rota_path",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "rota_tipo",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": "'read'::character varying",
+        "primary_key": false
+      },
+      {
+        "nome": "rota_ativ",
+        "tipo": "boolean",
+        "nullable": true,
+        "default": "true",
+        "primary_key": false
+      },
+      {
+        "nome": "rota_data_cria",
+        "tipo": "timestamp without time zone",
+        "nullable": true,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      },
+      {
+        "nome": "rota_usua_cria",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela perm_rota_mobile"
+  },
+  "permissoesmodulosmobile": {
+    "colunas": [
+      {
+        "nome": "perm_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('permissoesmodulosmobile_perm_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "perm_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_ativ",
+        "tipo": "boolean",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_usua_libe",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_data_alte",
+        "tipo": "timestamp with time zone",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "perm_modu",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela permissoesmodulosmobile"
+  },
   "pesoscte": {
     "colunas": [
       {
@@ -79593,69 +81553,6 @@
         "primary_key": true
       },
       {
-        "nome": "prod_empr",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "prod_empr",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "prod_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "prod_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "prod_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "prod_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "prod_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "prod_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "prod_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
         "nome": "prod_nome",
         "tipo": "character varying",
         "nullable": true,
@@ -79667,20 +81564,6 @@
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "prod_nome",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "prod_unme",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -79691,24 +81574,10 @@
         "primary_key": false
       },
       {
-        "nome": "prod_loca",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "prod_sugr",
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "prod_ncm",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -79726,20 +81595,6 @@
         "primary_key": false
       },
       {
-        "nome": "prod_foto",
-        "tipo": "bytea",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "prod_fami",
-        "tipo": "integer",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "prod_tipo",
         "tipo": "character varying",
         "nullable": true,
@@ -79747,24 +81602,10 @@
         "primary_key": false
       },
       {
-        "nome": "prod_grup",
-        "tipo": "integer",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "prod_ncm",
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "prod_marc",
-        "tipo": "integer",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -79782,21 +81623,7 @@
         "primary_key": false
       },
       {
-        "nome": "prod_sugr",
-        "tipo": "integer",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "prod_codi_serv",
-        "tipo": "character varying",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "prod_coba",
         "tipo": "character varying",
         "nullable": true,
         "default": null,
@@ -79941,13 +81768,6 @@
         "nullable": true,
         "default": "0",
         "primary_key": false
-      },
-      {
-        "nome": "prod_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "0",
-        "primary_key": true
       },
       {
         "nome": "prod_empr",
@@ -82328,6 +84148,46 @@
     ],
     "descricao": "Tabela r000ecf"
   },
+  "ramoatividade": {
+    "colunas": [
+      {
+        "nome": "ramo_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": true
+      },
+      {
+        "nome": "ramo_desc",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "ramo_usua",
+        "tipo": "integer",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "_log_data",
+        "tipo": "date",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "_log_time",
+        "tipo": "time without time zone",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela ramoatividade"
+  },
   "rascunho": {
     "colunas": [
       {
@@ -82498,6 +84358,95 @@
       }
     ],
     "descricao": "Tabela rateioprojeto"
+  },
+  "recebimentosdk": {
+    "colunas": [
+      {
+        "nome": "sdk_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('recebimentosdk_sdk_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "sdk_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "1",
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "1",
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_pedi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_tipo",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_valo",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_parc",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "1",
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_stat",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": "'pendente'::character varying",
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_seri",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": "'SDK'::character varying",
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_data",
+        "tipo": "timestamp without time zone",
+        "nullable": false,
+        "default": "CURRENT_TIMESTAMP",
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_resp",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "sdk_erro",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela recebimentosdk"
   },
   "receitaclube": {
     "colunas": [
@@ -88107,42 +90056,7 @@
   "saldosprodutos": {
     "colunas": [
       {
-        "nome": "id",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('saldosprodutos_id_seq'::regclass)",
-        "primary_key": true
-      },
-      {
         "nome": "sapr_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "id",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('saldosprodutos_id_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "sapr_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "sapr_empr",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "sapr_fili",
         "tipo": "integer",
         "nullable": false,
         "default": null,
@@ -88151,20 +90065,6 @@
       {
         "nome": "sapr_fili",
         "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "sapr_empr",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "sapr_fili",
-        "tipo": "character varying",
         "nullable": false,
         "default": null,
         "primary_key": true
@@ -88174,20 +90074,6 @@
         "tipo": "character varying",
         "nullable": false,
         "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "sapr_prod",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "sapr_fili",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": true
       },
       {
@@ -88196,20 +90082,6 @@
         "nullable": true,
         "default": "0",
         "primary_key": false
-      },
-      {
-        "nome": "sapr_sald",
-        "tipo": "numeric",
-        "nullable": false,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "sapr_prod",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
       },
       {
         "nome": "sapr_said",
@@ -88217,13 +90089,6 @@
         "nullable": true,
         "default": "0",
         "primary_key": false
-      },
-      {
-        "nome": "sapr_prod",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
       },
       {
         "nome": "_log_data",
@@ -89020,6 +90885,34 @@
         "nullable": true,
         "default": null,
         "primary_key": false
+      },
+      {
+        "nome": "serv_cust_atac",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "serv_empr_ofic",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "serv_fili_ofic",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
+        "primary_key": false
+      },
+      {
+        "nome": "serv_dado_nota",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
       }
     ],
     "descricao": "Tabela servicosos"
@@ -89645,6 +91538,20 @@
         "tipo": "time without time zone",
         "nullable": true,
         "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "situ_colo",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "16777215",
+        "primary_key": false
+      },
+      {
+        "nome": "situ_colo_font",
+        "tipo": "integer",
+        "nullable": true,
+        "default": "0",
         "primary_key": false
       }
     ],
@@ -91368,38 +93275,10 @@
         "primary_key": true
       },
       {
-        "nome": "sugr_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('subgruposprodutos_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
-        "nome": "grup_codi",
-        "tipo": "integer",
-        "nullable": false,
-        "default": "nextval('subgruposprodutos_grup_codi_seq'::regclass)",
-        "primary_key": true
-      },
-      {
         "nome": "sugr_desc",
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "grup_desc",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -91938,85 +93817,8 @@
         "primary_key": true
       },
       {
-        "nome": "tabe_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_empr",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
         "nome": "tabe_fili",
         "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_fili",
-        "tipo": "integer",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "tabe_prod",
-        "tipo": "character varying",
         "nullable": false,
         "default": null,
         "primary_key": true
@@ -92032,20 +93834,6 @@
         "nome": "tabe_prco",
         "tipo": "numeric",
         "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_icms",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_prco",
-        "tipo": "numeric",
-        "nullable": true,
         "default": "0",
         "primary_key": false
       },
@@ -92054,20 +93842,6 @@
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_desc",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_vipi",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -92088,20 +93862,6 @@
         "nome": "tabe_pipi",
         "tipo": "numeric",
         "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_fret",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_pipi",
-        "tipo": "numeric",
-        "nullable": true,
         "default": "0",
         "primary_key": false
       },
@@ -92116,13 +93876,6 @@
         "nome": "tabe_desp",
         "tipo": "numeric",
         "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_desp",
-        "tipo": "numeric",
-        "nullable": true,
         "default": "0",
         "primary_key": false
       },
@@ -92130,28 +93883,7 @@
         "nome": "tabe_cust",
         "tipo": "numeric",
         "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_marg",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_cust",
-        "tipo": "numeric",
-        "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_impo",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -92159,13 +93891,6 @@
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_avis",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -92186,13 +93911,6 @@
         "nome": "tabe_praz",
         "tipo": "numeric",
         "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_praz",
-        "tipo": "numeric",
-        "nullable": true,
         "default": "0",
         "primary_key": false
       },
@@ -92200,28 +93918,7 @@
         "nome": "tabe_apra",
         "tipo": "numeric",
         "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_vare",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_apra",
-        "tipo": "numeric",
-        "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "_log_data",
-        "tipo": "date",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -92241,27 +93938,6 @@
       {
         "nome": "_log_time",
         "tipo": "time without time zone",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "_log_time",
-        "tipo": "time without time zone",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_valo_st",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_perc_reaj",
-        "tipo": "numeric",
         "nullable": true,
         "default": null,
         "primary_key": false
@@ -92271,13 +93947,6 @@
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_hist",
-        "tipo": "text",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -92295,24 +93964,10 @@
         "primary_key": false
       },
       {
-        "nome": "tabe_cuge",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "tabe_mark_perc_ipi",
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_entr",
-        "tipo": "date",
-        "nullable": true,
-        "default": null,
         "primary_key": false
       },
       {
@@ -92323,24 +93978,10 @@
         "primary_key": false
       },
       {
-        "nome": "tabe_perc_st",
-        "tipo": "numeric",
-        "nullable": true,
-        "default": null,
-        "primary_key": false
-      },
-      {
         "nome": "tabe_mark_perc_fret",
         "tipo": "numeric",
         "nullable": true,
         "default": "0",
-        "primary_key": false
-      },
-      {
-        "nome": "tabe_prod_id",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -92604,6 +94245,13 @@
       },
       {
         "nome": "tabe_cust_frac",
+        "tipo": "numeric",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "tabe_cust_atac",
         "tipo": "numeric",
         "nullable": true,
         "default": null,
@@ -93666,6 +95314,74 @@
       }
     ],
     "descricao": "Tabela titu"
+  },
+  "titulorecebersdk": {
+    "colunas": [
+      {
+        "nome": "titu_id",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('titulorecebersdk_titu_id_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "titu_empr",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "1",
+        "primary_key": false
+      },
+      {
+        "nome": "titu_fili",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "1",
+        "primary_key": false
+      },
+      {
+        "nome": "titu_rece",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "titu_nume",
+        "tipo": "integer",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "titu_valo",
+        "tipo": "numeric",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "titu_seri",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": "'SDK'::character varying",
+        "primary_key": false
+      },
+      {
+        "nome": "titu_data",
+        "tipo": "date",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "titu_stat",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": "'previsto'::character varying",
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela titulorecebersdk"
   },
   "titulospagar": {
     "colunas": [
@@ -96553,66 +98269,10 @@
         "primary_key": true
       },
       {
-        "nome": "unid_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "unid_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "unid_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "unid_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
-        "primary_key": true
-      },
-      {
-        "nome": "unid_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "unid_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
-        "nome": "unid_codi",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": "NULL::character varying",
-        "primary_key": true
-      },
-      {
         "nome": "unid_desc",
         "tipo": "character varying",
         "nullable": true,
         "default": "NULL::character varying",
-        "primary_key": false
-      },
-      {
-        "nome": "unid_desc",
-        "tipo": "character varying",
-        "nullable": false,
-        "default": null,
         "primary_key": false
       },
       {
@@ -96733,7 +98393,7 @@
     ],
     "descricao": "Tabela usocredito"
   },
-  "usuariosmarketplace": {
+  "usuarios": {
     "colunas": [
       {
         "nome": "usua_codi",
@@ -96827,15 +98487,48 @@
         "primary_key": false
       },
       {
-        "nome": "usua_senh_mark",
+        "nome": "usua_senh_mobi",
         "tipo": "character",
         "nullable": true,
         "default": null,
         "primary_key": false
       },
       {
-        "nome": "usua_docu",
+        "nome": "usua_seto",
         "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      }
+    ],
+    "descricao": "Tabela usuarios"
+  },
+  "usuariosmarketplace": {
+    "colunas": [
+      {
+        "nome": "usua_codi",
+        "tipo": "integer",
+        "nullable": false,
+        "default": "nextval('usuariosmarketplace_usua_codi_seq'::regclass)",
+        "primary_key": true
+      },
+      {
+        "nome": "usua_nome",
+        "tipo": "character varying",
+        "nullable": false,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "usua_senh_mark",
+        "tipo": "character varying",
+        "nullable": true,
+        "default": null,
+        "primary_key": false
+      },
+      {
+        "nome": "usua_docu",
+        "tipo": "character",
         "nullable": true,
         "default": null,
         "primary_key": false
@@ -99954,5 +101647,109 @@
       }
     ],
     "descricao": "Tabela xmlrepom"
+  },
+  "_metadados": {
+    "campos_chave": {
+      "clientes": {
+        "tabelas": [
+          "entidades"
+        ],
+        "campos_identificacao": [
+          "enti_clie",
+          "enti_nome",
+          "enti_fant"
+        ],
+        "campos_contato": [
+          "enti_fone",
+          "enti_celu",
+          "enti_emai"
+        ],
+        "campos_endereco": [
+          "enti_ende",
+          "enti_cida",
+          "enti_esta",
+          "enti_cep"
+        ],
+        "campos_documento": [
+          "enti_cnpj",
+          "enti_cpf"
+        ]
+      },
+      "vendedores": {
+        "tabelas": [
+          "entidades"
+        ],
+        "campos_identificacao": [
+          "pedi_vend",
+          "enti_nome",
+          "enti_titpo_enti"
+        ]
+      },
+      "produtos": {
+        "tabelas": [
+          "produtos"
+        ],
+        "campos_identificacao": [
+          "prod_codi",
+          "prod_nome"
+        ],
+        "campos_preco": [
+          "prod_prec",
+          "prod_cust"
+        ],
+        "campos_estoque": [
+          "sapr_sald"
+        ]
+      },
+      "pedidos": {
+        "tabelas": [
+          "pedidosvenda"
+        ],
+        "campos_identificacao": [
+          "pedi_nume",
+          "pedi_data"
+        ],
+        "campos_cliente": [
+          "pedi_forn"
+        ],
+        "campos_vendedor": [
+          "pedi_vend"
+        ],
+        "campos_valor": [
+          "pedi_tota"
+        ]
+      }
+    },
+    "descricao": "Metadados para facilitar consultas do agente",
+    "exemplos_consultas": {
+      "clientes": [
+        "Campos principais: enti_clie (código), enti_nome (nome), enti_fant (fantasia)",
+        "IMPORTANTE: Para pedidos/vendas, NÃO filtrar por enti_tipo_enti = 'CL'"
+      ],
+      "vendedores": [
+        "USAR: SELECT enti_nome FROM entidades WHERE enti_tipo_enti = 'VE'",
+        "IMPORTANTE: Para pedidos/vendas, NÃO filtrar por enti_tipo_enti = 'VE'"
+      ],
+      "produtos": [
+        "Para buscar produtos: SELECT prod_nome FROM produtos",
+        "Para estoque: SELECT sapr_sald FROM saldosprodutos"
+      ],
+      "pedidos": [
+        "Para buscar pedidos: SELECT pedi_nume, pedi_data FROM pedidosvenda",
+        "Relacionar com cliente: JOIN entidades ON pedi_forn = enti_clie",
+        "Relacionar com produto: JOIN produtos ON pedi_prod = prod_codi",
+        "Relacionar com vendedor: JOIN entidades ON pedi_vend = enti_clie",
+        "CRÍTICO: NUNCA filtrar por enti_tipo_enti em consultas de pedidos",
+        "SEMPRE incluir enti_tipo_enti no SELECT para mostrar o tipo da entidade",
+        "Uma entidade pode ser CL (cliente), FO (fornecedor), VE (vendedor) ou AM (ambos)"
+      ],
+      "regras_filtros": [
+        "NUNCA usar WHERE enti_tipo_enti = 'CL' em consultas de pedidos/vendas",
+        "NUNCA usar WHERE enti_tipo_enti = 'FO' em consultas de pedidos/vendas",
+        "SEMPRE incluir enti_tipo_enti no SELECT para discriminar tipos",
+        "Entidades podem ter múltiplos tipos simultaneamente",
+        "Para agrupar por tipo, usar GROUP BY enti_tipo_enti (sem WHERE)"
+      ]
+    }
   }
 }

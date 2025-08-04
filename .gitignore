@@ -57,3 +57,7 @@ __pycache__/
 dist/
 build/
 *.egg-info/
+
+# PyPI configuration and tokens
+.pypirc
+*.token

@@ -5,11 +5,21 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SMITHERY_API_KEY = os.getenv("SMITHERY_API_KEY")
+print('chave do mcp',SMITHERY_API_KEY)
 if not SMITHERY_API_KEY:
-    raise ValueError("SMITHERY_API_KEY não definida no ambiente.")
+    print("⚠️ SMITHERY_API_KEY não definida - MCP tools não estarão disponíveis")
+    SMITHERY_API_KEY = "dummy_key"
 
-# Configurações originais dos MCP servers
+# Configuração simplificada para evitar erros
 MCP_SERVERS_CONFIG = {
+    "chart_js_generator": {
+        "url": f"https://server.smithery.ai/@antvis/mcp-server-chart/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu",
+        "transport": "streamable_http",
+    },
+}
+
+# Configuração completa (para quando o sistema estiver estável)
+MCP_SERVERS_CONFIG_FULL = {
     'passos_sequenciais': {
         'url': f'https://server.smithery.ai/@xinzhongyouhai/mcp-sequentialthinking-tools/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu',
         'transport': 'streamable_http',
@@ -22,10 +32,39 @@ MCP_SERVERS_CONFIG = {
         'url': f'https://server.smithery.ai/@upstash/context7-mcp/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu',
         'transport': 'streamable_http',
     },
+    # Ferramentas de visualização integradas
+    "chart_js_generator": {
+        "url": f"https://server.smithery.ai/@chartjs/chartjs-mcp/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu",
+        "transport": "streamable_http",
+    },
+    "matplotlib_generator": {
+        "url": f"https://server.smithery.ai/@matplotlib/matplotlib-mcp/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu",
+        "transport": "streamable_http",
+    },
+    "plotly_generator": {
+        "url": f"https://server.smithery.ai/@plotly/plotly-mcp/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu",
+        "transport": "streamable_http",
+    },
 }
 
-# Configurações para MCP Tools de Visualização
+# Configuração corrigida para MCP Tools de Visualização (estrutura plana)
 MCP_VISUALIZATION_CONFIG = {
+    "chart_js_generator": {
+        "url": f"https://server.smithery.ai/@chartjs/chartjs-mcp/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu",
+        "transport": "streamable_http",
+    },
+    "matplotlib_generator": {
+        "url": f"https://server.smithery.ai/@matplotlib/matplotlib-mcp/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu",
+        "transport": "streamable_http",
+    },
+    "plotly_generator": {
+        "url": f"https://server.smithery.ai/@plotly/plotly-mcp/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu",
+        "transport": "streamable_http",
+    },
+}
+
+# Configuração original aninhada (mantida para compatibilidade)
+MCP_VISUALIZATION_CONFIG_NESTED = {
     "graficos_basicos": {
         "chart_js_generator": {
             "url": f"https://server.smithery.ai/@chartjs/chartjs-mcp/mcp?api_key={SMITHERY_API_KEY}&profile=liable-rhinoceros-zBrJHu",
@@ -124,6 +163,4 @@ MCP_DEV_CONFIG = {
            'transport': 'streamable_http',
         },
     },
-    # Adiciona as configurações de visualização ao MCP_DEV_CONFIG
-    "visualizacao": MCP_VISUALIZATION_CONFIG
 }

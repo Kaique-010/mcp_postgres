@@ -264,9 +264,10 @@
 
 
                 if (response.ok) {
-                    addMessage(data.response);
+
+                    addMessage(data.resposta || data.response || 'Resposta vazia');
                 } else {
-                    addMessage(`❌ Erro: ${data.error || 'Erro desconhecido'}`);
+                    addMessage(`❌ Erro: ${data.error || data.resposta || 'Erro desconhecido'}`);
                 }
             } catch (error) {
                 addMessage(`❌ Erro de conexão: ${error.message}`);
